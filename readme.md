@@ -79,6 +79,11 @@ The case management process is a simple 3 milestone process as seen below:
 
 ![alt text](https://github.com/jbossdemocentral/rhpam7-credit-card-fraud-detection/blob/master/docs/demo-images/case_mgt.png)
 
+Enhancements
+=============================
+
+- The event processor can be made to run within a spark context if there needs to be a requirement to scale. This can also be used in case of need to use training models in the decision making process.
+- The Case Management process is a simple 3 milestone process, this can be extended to fit real-life usecases. Also, for the scope of the demo, the various steps in the process are simple script tasks. This would be replaced by service tasks where necessary.
 
 
 
