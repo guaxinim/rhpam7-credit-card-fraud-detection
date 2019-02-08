@@ -11,5 +11,5 @@ This demo demonstrates a complete end to end solution for real time fraud detect
 The CEP rule engine inspects transactions in a time window to identify potential fraudulent transactions. The event stream is created using kafka. This simulates the real-life events based on customer usage behavior. Once the fraudulent transactions are identified, it sends out the information so that a fraud investigation case can be created and acted upon. 
 
 
-
+![alt text](https://github.com/jbossdemocentral/rhpam7-credit-card-fraud-detection/blob/master/docs/demo-images/demo_arch.png)
 
