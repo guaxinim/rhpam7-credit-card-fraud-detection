@@ -309,10 +309,6 @@ function create_application() {
     -e RATE=1 \
     --name=emitter
 
-  oc new-app centos/python-36-centos7~https://github.com/bones-brigade/kafka-openshift-python-listener.git \
-    -e KAFKA_BROKERS=kafka.kafka.svc:9092 \
-    -e KAFKA_TOPIC=events \
-    --name=listener
 
  oc new-app java:8~https://github.com/snandakumar87/decisionManagerCreditCardFraud
 
