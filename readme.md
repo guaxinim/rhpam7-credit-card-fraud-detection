@@ -77,7 +77,7 @@ A full walkthrough script of the demo can be found [here](https://docs.google.co
 The case management process is a simple 3 milestone process as seen below:
 
 
-![alt text](https://github.com/jbossdemocentral/rhpam7-credit-card-fraud-detection/blob/master/docs/demo-images/case_mgt.png)
+![alt text](https://github.com/jbossdemocentral/rhpam7-credit-card-fraud-detection/blob/master/docs/demo-images/case_mgmt.png)
 
 CEP Usecase
 =============================
