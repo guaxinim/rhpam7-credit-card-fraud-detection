@@ -79,6 +79,10 @@ The case management process is a simple 3 milestone process as seen below:
 
 ![alt text](https://github.com/jbossdemocentral/rhpam7-credit-card-fraud-detection/blob/master/docs/demo-images/case_mgt.png)
 
+CEP Usecase
+=============================
+When a credit-card transaction enters the system, fetch the context of that transaction from a datastore, where the context is defined as an {x} number of previous transactions of the same credit card. When, within the last 15 minutes of the current transaction, there were three or more additional transactions with the same card, and of those transactions, at least two were within 10 seconds of each other, raise a ‘potential fraud’ alert.
+
 Enhancements
 =============================
 
