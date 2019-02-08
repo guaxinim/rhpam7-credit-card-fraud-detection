@@ -26,7 +26,7 @@ Installation
 =============================
 This demo can be installed on Red Hat OpenShift in various ways. We'll explain the different options provided.
 
-All installation options require an oc client installation that is connected to a running OpenShift instance. More information on OpenShift and how to setup a local OpenShift development environment based on the Red Hat Container Development Kit can be found here.
+All installation options require an oc client installation that is connected to a running OpenShift instance. More information on OpenShift and how to setup a local OpenShift development environment based on the Red Hat Container Development Kit can be found [here](https://developers.redhat.com/products/cdk/overview/).
 
 Automated installation
 =============================
@@ -72,7 +72,7 @@ Demo Walkthrough
 
 Events are created using a simple python event emitter. The event processor uses vertx kafka consumer to read the kafka stream and invoke the decision engine for rule evaluation, it then invokes a blocking call for invoking the case creation process using a remote call out to the case management engine.
 
-A full walkthrough script of the demo can be found here.
+A full walkthrough script of the demo can be found [here](https://docs.google.com/document/d/1GhRoBTIA2CuYmdqXgJxQGcp3HJuZmypUQouuKNcrsWk).
 
 The case management process is a simple 3 milestone process as seen below:
 
