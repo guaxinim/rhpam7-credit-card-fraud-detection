@@ -51,11 +51,10 @@ Run ./provision.sh -h (Linux/macOS) or ./provision.ps1 -h (Windows) to inspect t
 
 To provision the demo, with the OpenShift ImageStreams in the project's namespace, run ./provision.sh setup rhpam7-case-mgmt --with-imagestreams (Linux/macOS) or ./provision.sh -command setup -demo rhpam7-case-mgmt -with-imagestreams (Windows)
 
----
 **NOTE**
 
 The with-imagestreams parameter installs the Process Automation Manager 7 image streams and templates into the project namespace instead of the openshift namespace (for which you need admin rights). If you already have the required image-streams and templates installed in your OpenShift environment in the openshift namespace, you can omit the with-imagestreams from the setup command.
----
+
 
 A second useful option is the --pv-capacity (Linux/macOS)/ -pv-capacity (Windows) option, which allows you to set the capacity of the Persistent Volume used by the Business Central component. This is for example required when installing this demo in OpenShift Online, as the Persistent Volume Claim needs to be set to 1Gi instead of the default 512Mi. So, to install this demo in OpenShift Online, you can use the following command: ./provision.sh setup rhpam7-oih --pv-capacity 1Gi --with-imagestreams (Linux/macOS) or ./provision.ps1 -command setup -demo rhpam7-oih -pv-capacity 1Gi -with-imagestreams (Windows).
 
