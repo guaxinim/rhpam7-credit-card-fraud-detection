@@ -7,7 +7,10 @@ Real time fraud detection is becoming more and more important in today's digital
 
 Architecture
 =============================
-This demo demonstrates a complete end to end solution for real time fraud detection. The core logic of this demo is derived off the blog https://developers.redhat.com/blog/2018/07/26/detecting-credit-card-fraud-with-red-hat-decision-manager-7/
+This demo demonstrates a complete end to end solution for real time fraud detection. The core logic of this demo is derived off the blog 
+
+https://developers.redhat.com/blog/2018/07/26/detecting-credit-card-fraud-with-red-hat-decision-manager-7/
+
 The CEP rule engine inspects transactions in a time window to identify potential fraudulent transactions. The event stream is created using kafka. This simulates the real-life events based on customer usage behavior. Once the fraudulent transactions are identified, it sends out the information so that a fraud investigation case can be created and acted upon. 
 
 
