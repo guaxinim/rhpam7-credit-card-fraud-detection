@@ -36,7 +36,6 @@ Run the init-openshift.sh (Linux/macOS) or init-openshift.ps1 (Windows) file. Th
 
 Login to your OpenShift console. For a local OpenShift installation this is usually: https://{host}:8443/console
 
-A full walkthrough script of the demo can be found here
 
 Scripted installation
 =============================
@@ -64,6 +63,16 @@ A second useful option is the --pv-capacity (Linux/macOS)/ -pv-capacity (Windows
 After provisioning, follow the instructions from above "Automated installation", starting at step 3.
 
 To delete an already provisioned demo, run ./provision.sh delete rhpam7-oih (Linux/macOS) or ./provision.ps1 -command delete -demo rhpam7-oih (Windows).
+
+Demo Walkthrough
+=============================
+
+Events are created using a simple python event emitter. The event processor uses vertx kafka consumer to read the kafka stream and invoke the decision engine for rule evaluation, it then invokes a blocking call for invoking the case creation process using a remote call out to the case management engine.
+
+A full walkthrough script of the demo can be found here.
+
+The case management process is a simple 3 milestone process as seen below:
+
 
 
 
