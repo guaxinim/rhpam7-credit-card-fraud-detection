@@ -39,6 +39,13 @@ Run the init-openshift.sh (Linux/macOS) or init-openshift.ps1 (Windows) file. Th
 
 Login to your OpenShift console. For a local OpenShift installation this is usually: https://{host}:8443/console
 
+---
+**NOTE**
+
+Once the deployment is complete, open up the business central URL to verify if the deployment is complete. Sometimes, the deployment will not happen if the kie server deployment stopped due to resource constraints. In that case you can deploy from business central directly.
+
+---
+
 
 Scripted installation
 =============================
