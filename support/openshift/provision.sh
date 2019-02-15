@@ -312,7 +312,7 @@ function create_application() {
 
  oc new-app java:8~https://github.com/snandakumar87/decisionManagerCreditCardFraud
 
- oc new-project kafka
+ oc new-project kafka-cluster
 
    oc create -f https://raw.githubusercontent.com/strimzi/strimzi-kafka-operator/0.1.0/kafka-inmemory/resources/openshift-template.yaml
 
