@@ -89,6 +89,7 @@ The case management process is a simple 3 milestone process as seen below:
 CEP Usecase
 =============================
 When a credit-card transaction enters the system, fetch the context of that transaction from a datastore, where the context is defined as an {x} number of previous transactions of the same credit card. When, within the last 15 minutes of the current transaction, there were three or more additional transactions with the same card, and of those transactions, at least two were within 10 seconds of each other, raise a ‘potential fraud’ alert.
+HA needs to be addressed from the perspective of CEP, which is assumed out of scope with this implementation
 
 Enhancements
 =============================
