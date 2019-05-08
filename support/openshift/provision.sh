@@ -278,7 +278,9 @@ function create_application() {
 
   oc create configmap setup-demo-scripts --from-file=$SCRIPT_DIR/bc-clone-git-repository.sh,$SCRIPT_DIR/provision-properties-static.sh
 
-  oc new-app --template=rhpam72-authoring \
+  oc create -f https://raw.githubusercontent.com/jboss-container-images/rhpam-7-openshift-image/7.2.0.GA/templates/rhpam72-authoring.yaml
+
+  oc new-app --template=rhpam72-authoring --allow-missing-images \
   -p APPLICATION_NAME="$ARG_DEMO" \
   -p IMAGE_STREAM_NAMESPACE="$IMAGE_STREAM_NAMESPACE" \
   -p IMAGE_STREAM_TAG="1.0" \
@@ -304,7 +306,7 @@ function create_application() {
 
 
   oc new-app centos/python-36-centos7~https://github.com/snandakumar87/eventEmitterCreditTransactions \
-    -e KAFKA_BROKERS=kafka.kafka.svc:9092 \
+    -e KAFKA_BROKERS=kafka.rhpam7-case-mgmt.svc:9092 \
     -e KAFKA_TOPIC=events \
     -e RATE=1 \
     --name=emitter
@@ -312,7 +314,7 @@ function create_application() {
 
  oc new-app java:8~https://github.com/snandakumar87/decisionManagerCreditCardFraud
 
- oc new-project kafka
+# oc new-project kafka
 
    oc create -f https://raw.githubusercontent.com/strimzi/strimzi-kafka-operator/0.1.0/kafka-inmemory/resources/openshift-template.yaml
 
