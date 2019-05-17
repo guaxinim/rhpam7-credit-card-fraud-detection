@@ -49,7 +49,7 @@ ARG_USERNAME=
 ARG_PROJECT_SUFFIX=
 ARG_COMMAND=
 ARG_RUN_VERIFY=false
-ARG_WITH_IMAGESTREAMS=false
+ARG_WITH_IMAGESTREAMS=true
 ARG_PV_CAPACITY=512Mi
 ARG_DEMO=
 
@@ -242,7 +242,9 @@ function create_projects() {
 
 function import_imagestreams_and_templates() {
   echo_header "Importing Image Streams"
-  oc create -f https://raw.githubusercontent.com/jboss-container-images/rhpam-7-openshift-image/$OPENSHIFT_PAM7_TEMPLATES_TAG/rhpam73-image-streams.yaml
+  URL_IMAGE_STREAMS="https://raw.githubusercontent.com/jboss-container-images/rhpam-7-openshift-image/$OPENSHIFT_PAM7_TEMPLATES_TAG/rhpam73-image-streams.yaml"
+  oc create -f $URL_IMAGE_STREAMS -n openshift || echo "As imagens ja existem"
+  oc create -f $URL_IMAGE_STREAMS
   oc create -f https://raw.githubusercontent.com/jboss-openshift/application-templates/ose-v1.4.15/openjdk/openjdk18-image-stream.json
 
   echo_header "Patching the ImageStreams"
@@ -255,7 +257,7 @@ function import_imagestreams_and_templates() {
 
 
 function import_secrets_and_service_account() {
-  echo_header "Importing secrets, service accounts and Image Streams."
+  echo_header "Importing secrets and service accounts."
   oc process -f https://raw.githubusercontent.com/jboss-container-images/rhpam-7-openshift-image/$OPENSHIFT_PAM7_TEMPLATES_TAG/example-app-secret-template.yaml | oc create -f -
   oc process -f https://raw.githubusercontent.com/jboss-container-images/rhpam-7-openshift-image/$OPENSHIFT_PAM7_TEMPLATES_TAG/example-app-secret-template.yaml -p SECRET_NAME=kieserver-app-secret | oc create -f -
 
@@ -263,23 +265,22 @@ function import_secrets_and_service_account() {
   oc create serviceaccount kieserver-service-account
   oc secrets link --for=mount businesscentral-service-account businesscentral-app-secret
   oc secrets link --for=mount kieserver-service-account kieserver-app-secret
-  oc create -f https://raw.githubusercontent.com/jboss-container-images/rhpam-7-openshift-image/7.3.1.GA/rhpam73-image-streams.yaml -n openshift
 }
 
 function create_application() {
   echo_header "Creating Process Automation Manager 7 Application config."
 
-  IMAGE_STREAM_NAMESPACE="openshift"
-
   if [ "$ARG_WITH_IMAGESTREAMS" = true ] ; then
     IMAGE_STREAM_NAMESPACE=${PRJ[0]}
   fi
+
+  IMAGE_STREAM_NAMESPACE="openshift"
 
   oc process -f $SCRIPT_DIR/rhpam73-businesscentral-openshift-with-users.yaml -p DOCKERFILE_REPOSITORY="https://github.com/jbossdemocentral/rhpam7-order-it-hw-demo" -p DOCKERFILE_REF="master" -p DOCKERFILE_CONTEXT="support/openshift/rhpam7-businesscentral-openshift-with-users" -n ${PRJ[0]} | oc create -n ${PRJ[0]} -f -
 
   oc create configmap setup-demo-scripts --from-file=$SCRIPT_DIR/bc-clone-git-repository.sh,$SCRIPT_DIR/provision-properties-static.sh
 
-  oc create -f https://raw.githubusercontent.com/jboss-container-images/rhpam-7-openshift-image/7.3.1.GA/templates/rhpam73-authoring.yaml
+  #oc create -f https://raw.githubusercontent.com/jboss-container-images/rhpam-7-openshift-image/7.3.1.GA/templates/rhpam73-authoring.yaml
 
   oc new-app --template=rhpam73-authoring --allow-missing-images \
   -p APPLICATION_NAME="$ARG_DEMO" \
