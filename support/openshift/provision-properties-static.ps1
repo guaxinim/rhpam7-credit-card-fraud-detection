@@ -1,4 +1,4 @@
-$PRJ_NAME="rhpam7-case-mgmt"
+$PRJ_NAME="rhpam7-fraud-detection"
 $PRJ_DESCRIPTION="Red Hat Process Automation Manager 7 Order IT Hardware Demo"
 
 #GitHub tag referencing the image streams and templates.

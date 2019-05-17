@@ -58,7 +58,7 @@ In the demo directory, go to ./support/openshift. In that directory you will fin
 
 Run ./provision.sh -h (Linux/macOS) or ./provision.ps1 -h (Windows) to inspect the installation options.
 
-To provision the demo, with the OpenShift ImageStreams in the project's namespace, run ./provision.sh setup rhpam7-case-mgmt --with-imagestreams (Linux/macOS) or ./provision.sh -command setup -demo rhpam7-case-mgmt -with-imagestreams (Windows)
+To provision the demo, with the OpenShift ImageStreams in the project's namespace, run ./provision.sh setup rhpam7-fraud-detection --with-imagestreams (Linux/macOS) or ./provision.sh -command setup -demo rhpam7-fraud-detection -with-imagestreams (Windows)
 
 ---
 **NOTE**

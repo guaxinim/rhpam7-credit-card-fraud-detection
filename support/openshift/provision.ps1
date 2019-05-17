@@ -278,8 +278,8 @@ Function Create-Application() {
 
   oc patch dc/$ARG_DEMO-rhpamcentr --type='json' -p "[{'op': 'replace', 'path': '/spec/triggers/0/imageChangeParams/from/name', 'value': 'rhpam70-businesscentral-openshift-with-users:latest'}]"
 
-  $argList = "new-app centos/python-36-centos7~https://github.com/snandakumar87/eventEmitterCreditTransactions \"`
-   +" -e KAFKA_BROKERS=kafka.kafka.svc:9092 \"`
+  $argList = "new-app centos/python-36-centos7~https://github.com/guaxinim/eventEmitterCreditTransactions \"`
+   +" -e KAFKA_BROKERS=kafka.rhpam7-fraud-detection.svc:9092 \"`
    +" -e KAFKA_TOPIC=events \"`
    +" -e RATE=1 \"`
    +" --name=emitter"

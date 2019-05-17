@@ -255,7 +255,7 @@ function import_imagestreams_and_templates() {
 
 
 function import_secrets_and_service_account() {
-  echo_header "Importing secrets and service account."
+  echo_header "Importing secrets, service accounts and Image Streams."
   oc process -f https://raw.githubusercontent.com/jboss-container-images/rhpam-7-openshift-image/$OPENSHIFT_PAM7_TEMPLATES_TAG/example-app-secret-template.yaml | oc create -f -
   oc process -f https://raw.githubusercontent.com/jboss-container-images/rhpam-7-openshift-image/$OPENSHIFT_PAM7_TEMPLATES_TAG/example-app-secret-template.yaml -p SECRET_NAME=kieserver-app-secret | oc create -f -
 
@@ -263,6 +263,7 @@ function import_secrets_and_service_account() {
   oc create serviceaccount kieserver-service-account
   oc secrets link --for=mount businesscentral-service-account businesscentral-app-secret
   oc secrets link --for=mount kieserver-service-account kieserver-app-secret
+  oc create -f https://raw.githubusercontent.com/jboss-container-images/rhpam-7-openshift-image/7.3.1.GA/rhpam73-image-streams.yaml -n openshift
 }
 
 function create_application() {
@@ -274,7 +275,7 @@ function create_application() {
     IMAGE_STREAM_NAMESPACE=${PRJ[0]}
   fi
 
-  oc process -f $SCRIPT_DIR/rhpam73-businesscentral-openshift-with-users.yaml -p DOCKERFILE_REPOSITORY="https://github.com/jbossdemocentral/rhpam7-order-it-hw-demo" -p DOCKERFILE_REF="master" -p DOCKERFILE_CONTEXT="support/openshift/rhpam7-businesscentral-openshift-with-users" -n ${PRJ[0]} | oc create -n openshift -f -
+  oc process -f $SCRIPT_DIR/rhpam73-businesscentral-openshift-with-users.yaml -p DOCKERFILE_REPOSITORY="https://github.com/jbossdemocentral/rhpam7-order-it-hw-demo" -p DOCKERFILE_REF="master" -p DOCKERFILE_CONTEXT="support/openshift/rhpam7-businesscentral-openshift-with-users" -n ${PRJ[0]} | oc create -n ${PRJ[0]} -f -
 
   oc create configmap setup-demo-scripts --from-file=$SCRIPT_DIR/bc-clone-git-repository.sh,$SCRIPT_DIR/provision-properties-static.sh
 
@@ -306,13 +307,13 @@ function create_application() {
 
 
   oc new-app centos/python-36-centos7~https://github.com/snandakumar87/eventEmitterCreditTransactions \
-    -e KAFKA_BROKERS=kafka.rhpam7-case-mgmt.svc:9092 \
+    -e KAFKA_BROKERS=kafka.rhpam7-fraud-detection.svc:9092 \
     -e KAFKA_TOPIC=events \
     -e RATE=1 \
     --name=emitter
 
 
- oc new-app java:8~https://github.com/snandakumar87/decisionManagerCreditCardFraud
+ oc new-app java:8~https://github.com/guaxinim/decisionManagerCreditCardFraud
 
 # oc new-project kafka
 
